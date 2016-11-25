@@ -46,7 +46,7 @@ module Spree
       end
 
       def destroy
-        @product = Product.friendly.find(params[:id])
+        @product = Spree::Product.friendly.find(params[:id])
         @product.destroy
 
         flash[:success] = Spree.t('notice_messages.product_deleted')
@@ -72,7 +72,7 @@ module Spree
       private
 
       def find_resource
-        Product.with_deleted.friendly.find(params[:id])
+        Spree::Product.with_deleted.friendly.find(params[:id])
       end
 
       def location_after_save

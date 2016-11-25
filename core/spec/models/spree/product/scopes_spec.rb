@@ -16,14 +16,14 @@ describe "Product scopes", type: :model do
       product.taxons << @child_taxon
     end
 
-    it "calling Product.in_taxon returns products in child taxons" do
+    it "calling Spree::Product.in_taxon returns products in child taxons" do
       product.taxons -= [@child_taxon]
       expect(product.taxons.count).to eq(1)
 
       expect(Spree::Product.in_taxon(@parent_taxon)).to include(product)
     end
 
-    it "calling Product.in_taxon should not return duplicate records" do
+    it "calling Spree::Product.in_taxon should not return duplicate records" do
       expect(Spree::Product.in_taxon(@parent_taxon).to_a.size).to eq(1)
     end
 

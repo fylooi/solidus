@@ -34,7 +34,7 @@ module Spree
       end
 
       def load_product
-        @product = Product.accessible_by(current_ability, :read).friendly.find(params[:product_slug]) if params[:product_slug]
+        @product = Spree::Product.accessible_by(current_ability, :read).friendly.find(params[:product_slug]) if params[:product_slug]
       end
 
       def load_stock_management_data

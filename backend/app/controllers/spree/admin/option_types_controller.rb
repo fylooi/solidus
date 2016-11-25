@@ -21,7 +21,7 @@ module Spree
       end
 
       def load_product
-        @product = Product.find_by_param!(params[:product_id])
+        @product = Spree::Product.find_by_param!(params[:product_id])
       end
 
       def setup_new_option_value
