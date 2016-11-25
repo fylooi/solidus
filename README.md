@@ -81,6 +81,27 @@ and the admin can be found at [http://localhost:3000/admin/](http://localhost:30
 
 As part of running the above installation steps, you will be asked to set an admin email/password combination. The default values are `admin@example.com` and `test123`, respectively.
 
+Integrating Solidus into an existing application
+------------------------------------------------
+
+In addition to the `Getting Started` instructions above, you will need to mount Solidus at a certain endpoint. 
+Add the following to `routes.rb`
+
+```
+  mount Spree::Core::Engine, :at => '/shop'
+```
+
+This will make the storefront available at `/shop` and the admin at `/shop/admin`
+
+If you have an existing user model to integrate:
+Run `rails g spree:custom_user <name of user model>`. This will:
+- create migrations to add Spree fields to your user table
+- create a helper to integrate your own sign up / in paths (`lib/spree/authentication_helpers.rb`). You may need to customize these paths
+
+Solidus uses `Kaminari` for pagination. If your existing application uses 
+`will_paginate`, you may see errors with pagination logic.
+
+
 ### Questions?
 
 The best way to ask questions is via the [#support channel on the Solidus Slack](https://solidusio.slack.com/messages/support/details/).
